@@ -8,16 +8,12 @@ import seedu.addressbook.data.exception.IllegalValueException;
  */
 public class Address {
 
-    public static final String EXAMPLE = "546, Dover Street 51, #01-01, 654825";
-    public static final String MESSAGE_ADDRESS_CONSTRAINTS = "Person addresses must be in this format: BLOCK, STREET, UNIT, POSTAL_CODE";
-    public static final String ADDRESS_VALIDATION_REGEX = ".+, .+, .+, .+";
+    public static final String EXAMPLE = "123, some street";
+    public static final String MESSAGE_ADDRESS_CONSTRAINTS = "Person addresses can be in any format";
+    public static final String ADDRESS_VALIDATION_REGEX = ".+";
 
     public final String value;
     private boolean isPrivate;
-    private Block block;
-    private Street street;
-    private Unit unit;
-    private PostalCode postalCode;
 
     /**
      * Validates given address.
@@ -26,70 +22,11 @@ public class Address {
      */
     public Address(String address, boolean isPrivate) throws IllegalValueException {
         String trimmedAddress = address.trim();
-        String splitAddress[] = trimmedAddress.split(",");
         this.isPrivate = isPrivate;
         if (!isValidAddress(trimmedAddress)) {
             throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
         }
-        else {
-            block = new Block(splitAddress[0]);
-            street = new Street(splitAddress[1]);
-            unit = new Unit(splitAddress[2]);
-            postalCode = new PostalCode(splitAddress[3]);
-        }
         this.value = trimmedAddress;
-    }
-    public class Block {
-        private String block;
-
-        public Block (String block) {
-            this.block = block;
-        }
-        /**
-         * Returns String of block
-         */
-        public String getBlock() {
-            return block;
-        }
-    }
-    public class PostalCode{
-        private String postalCode;
-
-        public PostalCode(String postalCode) {
-            this.postalCode = postalCode;
-        }
-        /**
-         * Returns String of postalCode
-         */
-        public String getPostalCode(){
-            return postalCode;
-        }
-    }
-    class Street {
-        private String street;
-
-        public Street(String street) {
-            this.street = street;
-        }
-        /**
-         * Returns String of street
-         */
-        public String getStreet(){
-            return street;
-        }
-    }
-    public class Unit {
-        private String unit;
-
-        public Unit(String unit) {
-            this.unit = unit;
-        }
-        /**
-         * Returns String of unit.
-         */
-        public String getUnit(){
-            return unit;
-        }
     }
 
     /**
