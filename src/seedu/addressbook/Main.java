@@ -7,6 +7,7 @@ import java.util.Optional;
 import seedu.addressbook.commands.Command;
 import seedu.addressbook.commands.CommandResult;
 import seedu.addressbook.commands.ExitCommand;
+import seedu.addressbook.common.Messages;
 import seedu.addressbook.data.AddressBook;
 import seedu.addressbook.data.person.ReadOnlyPerson;
 import seedu.addressbook.parser.Parser;
@@ -23,7 +24,7 @@ import seedu.addressbook.ui.TextUi;
 public class Main {
 
     /** Version info of the program. */
-    public static final String VERSION = "AddressBook Level 2 - Version 1.0";
+    private static final String VERSION = "AddressBook Level 2 - Version 1.0";
 
     private TextUi ui;
     private StorageFile storage;
@@ -38,7 +39,7 @@ public class Main {
     }
 
     /** Runs the program until termination.  */
-    public void run(String[] launchArgs) {
+    private void run(String[] launchArgs) {
         start(launchArgs);
         runCommandLoopUntilExitCommand();
         exit();
@@ -94,9 +95,7 @@ public class Main {
     /** Updates the {@link #lastShownList} if the result contains a list of Persons. */
     private void recordResult(CommandResult result) {
         final Optional<List<? extends ReadOnlyPerson>> personList = result.getRelevantPersons();
-        if (personList.isPresent()) {
-            lastShownList = personList.get();
-        }
+        personList.ifPresent(readOnlyPeople -> lastShownList = readOnlyPeople);
     }
 
     /**
@@ -111,6 +110,8 @@ public class Main {
             CommandResult result = command.execute();
             storage.save(addressBook);
             return result;
+        } catch (StorageOperationException soe) {
+            return new CommandResult(Messages.MESSAGE_READ_ONLY);
         } catch (Exception e) {
             ui.showToUser(e.getMessage());
             throw new RuntimeException(e);
