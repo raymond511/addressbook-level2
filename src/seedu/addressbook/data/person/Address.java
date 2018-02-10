@@ -50,9 +50,14 @@ public class Address {
 
     @Override
     public String toString() {
-        return String.format(TO_STRING_FORMAT,block.getBlock(), street.getStreet(),
+        return String.format(TO_STRING_FORMAT, block.getBlock(), street.getStreet(),
                 unit.getUnit(), postalCode.getPostalCode());
     }
+    public String value(){
+        return toString();
+    }
+
+
     private Block getBlock(){ return block; }
     private Street getStreet(){ return street; }
     private Unit getUnit(){ return unit; }
