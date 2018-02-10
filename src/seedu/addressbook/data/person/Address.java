@@ -24,6 +24,7 @@ public class Address {
     private final PostalCode postalCode;
     private boolean isPrivate;
 
+
     /**
      * Validates given address.
      *
@@ -40,6 +41,7 @@ public class Address {
         unit = new Unit(trimmedAddress.split(", ")[ADDRESS_UNIT_INDEX]);
         postalCode = new PostalCode(trimmedAddress.split(", ")[ADDRESS_POSTAL_CODE_INDEX]);
     }
+
 
     /**
      * Returns true if a given string is a valid person address.
