@@ -8,9 +8,14 @@ public class PostalCode{
         this.postalCode = postalCode;
     }
     /**
-     * Returns String of postalCode
+     * Returns String of postalCode of person's address
      */
     public String getPostalCode(){
         return postalCode;
+    }
+    public boolean equals(Object other) {
+        return other == this
+                || (other instanceof PostalCode
+                && this.postalCode.equals(((PostalCode) other).getPostalCode()));
     }
 }
