@@ -100,6 +100,15 @@ public class AddressBook {
     }
 
     /**
+     * Sorts all persons in the address book ny their names in alphabetical order.
+     * It changes the original list to this sorted list.
+     *
+     */
+    public void sortPersons() {
+        allPersons.sort();
+    }
+
+    /**
      * Clears all persons and tags from the address book.
      */
     public void clear() {
@@ -125,7 +134,7 @@ public class AddressBook {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddressBook // instanceof handles nulls
-                        && this.allPersons.equals(((AddressBook) other).allPersons)
-                        && this.allTags.equals(((AddressBook) other).allTags));
+                && this.allPersons.equals(((AddressBook) other).allPersons)
+                && this.allTags.equals(((AddressBook) other).allTags));
     }
 }
