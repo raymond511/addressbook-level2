@@ -10,6 +10,7 @@ import java.util.List;
 import seedu.addressbook.common.Utils;
 import seedu.addressbook.data.exception.DuplicateDataException;
 
+import static seedu.addressbook.data.person.Person.NAMECOMPARATOR;
 
 
 /**
@@ -123,6 +124,13 @@ public class UniquePersonList implements Iterable<Person> {
     }
 
     /**
+     * Sorts all persons in alphabetical order by their names.
+     */
+    public void sort() {
+        internalList.sort(NAMECOMPARATOR);
+    }
+
+    /**
      * Clears all persons in list.
      */
     public void clear() {
@@ -138,6 +146,6 @@ public class UniquePersonList implements Iterable<Person> {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof UniquePersonList // instanceof handles nulls
-                        && this.internalList.equals(((UniquePersonList) other).internalList));
+                && this.internalList.equals(((UniquePersonList) other).internalList));
     }
 }
