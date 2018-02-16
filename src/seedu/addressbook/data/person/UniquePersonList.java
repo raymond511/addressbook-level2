@@ -10,7 +10,6 @@ import java.util.List;
 import seedu.addressbook.common.Utils;
 import seedu.addressbook.data.exception.DuplicateDataException;
 
-import static seedu.addressbook.data.person.Person.NAMECOMPARATOR;
 
 
 /**
@@ -121,13 +120,6 @@ public class UniquePersonList implements Iterable<Person> {
         if (!personFoundAndDeleted) {
             throw new PersonNotFoundException();
         }
-    }
-
-    /**
-     * Sorts all persons in alphabetical order by their names.
-     */
-    public void sort() {
-        internalList.sort(NAMECOMPARATOR);
     }
 
     /**
