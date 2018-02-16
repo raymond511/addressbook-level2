@@ -34,4 +34,17 @@ public class Utils {
         }
         return true;
     }
+
+    /**
+     *
+     * @param set of String
+     * @return the same set with all the strings in lowercase
+     */
+    public static Set<String> getStringInLowerCase(Set<String> set) {
+        Set<String> stringsInLowerCase = new HashSet<>();
+        for (String s : set) {
+            stringsInLowerCase.add(s.toLowerCase());
+        }
+        return stringsInLowerCase;
+    }
 }
